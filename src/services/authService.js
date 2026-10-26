@@ -1,9 +1,11 @@
 import { getSupabase } from "../lib/supabase.js";
+import { getBasePath } from "../config/base.js";
 
 function appRedirectUrl() {
-  // Stay on this PWA after Google OAuth (hash router)
-  const { origin, pathname } = window.location;
-  return `${origin}${pathname}`;
+  // Netlify: https://lantaw.netlify.app/
+  // XAMPP:   http://localhost/movie/
+  const base = getBasePath();
+  return `${window.location.origin}${base || ""}/`;
 }
 
 export async function getSession() {

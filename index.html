@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0b0f14" />
     <meta name="description" content="Personal movie library PWA" />
-    <link rel="manifest" href="/movie/manifest.webmanifest" />
-    <link rel="stylesheet" href="/movie/src/styles/main.css" />
+    <script>
+      // Fix asset paths for Netlify (/) and XAMPP (/movie/)
+      (function () {
+        var path = location.pathname.replace(/\/index\.html$/, "");
+        var base = path === "/movie" || path.indexOf("/movie/") === 0 ? "/movie/" : "/";
+        var b = document.createElement("base");
+        b.href = base;
+        document.head.prepend(b);
+      })();
+    </script>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="src/styles/main.css" />
     <title>Movie</title>
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/movie/src/main.js"></script>
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>

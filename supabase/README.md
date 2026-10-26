@@ -11,27 +11,25 @@ Dashboard → **SQL Editor** → run in order:
 
 ### A. Google Cloud Console
 
-1. Create (or open) a project at [Google Cloud Console](https://console.cloud.google.com/)
-2. **APIs & Services → Credentials → Create credentials → OAuth client ID**
-3. Application type: **Web application**
-4. Authorized JavaScript origins:
+1. [APIs & Services → Credentials](https://console.cloud.google.com/apis/credentials)
+2. Open your **Web application** OAuth client
+3. **Authorized JavaScript origins** — add:
    - `http://localhost`
-5. Authorized redirect URIs (copy from Supabase Google provider screen):
+   - `https://lantaw.netlify.app`
+4. **Authorized redirect URIs** — keep:
    - `https://xzsynwcpzljzgaghetem.supabase.co/auth/v1/callback`
-6. Copy **Client ID** and **Client Secret**
+5. Save
 
 ### B. Supabase Dashboard
 
-1. **Authentication → Providers → Google** → Enable
-2. Paste Client ID + Client Secret → Save
+1. **Authentication → Providers → Google** → Enable + Client ID/Secret
+2. **Authentication → URL Configuration**
+   - **Site URL:** `https://lantaw.netlify.app`
+   - **Redirect URLs** (add all you use):
+     - `https://lantaw.netlify.app/**`
+     - `http://localhost/movie/**`
+     - `http://localhost/**`
 
-### C. URL configuration
+## 3. Deploy
 
-**Authentication → URL Configuration**
-
-- Site URL: `http://localhost/movie/`
-- Redirect URLs: `http://localhost/movie/**`
-
-## 3. App behavior
-
-The PWA redirects to `#/login` until a Google session exists. After OAuth, Supabase returns to the Site URL and the session is stored in the browser.
+Push to Git → Netlify auto-deploys from repo root (`netlify.toml` publish = `.`).

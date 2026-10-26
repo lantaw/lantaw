@@ -2,14 +2,14 @@
   "name": "Movie",
   "short_name": "Movie",
   "description": "Personal movie library",
-  "start_url": "/movie/",
-  "scope": "/movie/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0b0f14",
   "theme_color": "#0b0f14",
   "icons": [
     {
-      "src": "/movie/public/icons/icon.svg",
+      "src": "public/icons/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

@@ -1,5 +1,6 @@
 import { createApp } from "./App.js";
 import { getSession } from "./services/authService.js";
+import { assetUrl } from "./config/base.js";
 
 async function boot() {
   // Let Supabase finish Google OAuth (?code=...) before routing
@@ -18,8 +19,8 @@ boot();
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/movie/sw.js").catch(() => {
-      /* offline cache optional for local use */
+    navigator.serviceWorker.register(assetUrl("/sw.js")).catch(() => {
+      /* offline cache optional */
     });
   });
 }

@@ -1,13 +1,19 @@
-const CACHE = "movie-v1";
-const ASSETS = [
-  "/movie/",
-  "/movie/index.html",
-  "/movie/src/styles/main.css",
-  "/movie/src/main.js",
-];
+const CACHE = "movie-v2";
+
+function basePath() {
+  const path = self.location.pathname.replace(/\/sw\.js$/, "");
+  return path.endsWith("/") ? path.slice(0, -1) : path;
+}
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));
+  const base = basePath();
+  const assets = [
+    `${base}/`,
+    `${base}/index.html`,
+    `${base}/src/styles/main.css`,
+    `${base}/src/main.js`,
+  ];
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(assets)));
   self.skipWaiting();
 });
 
